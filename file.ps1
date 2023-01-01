@@ -67,11 +67,11 @@ function Get-Size() {
 
   $File = 'C:\File.txt'
 
-  (Get-Item "$($File)").Length      # Get file size in bytes.
-  (Get-Item "$($File)").Length/1KB  # Get file size in KB.
-  (Get-Item "$($File)").Length/1MB  # Get file size in MB.
-  (Get-Item "$($File)").Length/1GB  # Get file size in GB.
-  (Get-Item "$($File)").Length/1TB  # Get file size in TB.
+  (Get-Item "$($File)").Length      # Size in bytes.
+  (Get-Item "$($File)").Length/1KB  # Size in KB.
+  (Get-Item "$($File)").Length/1MB  # Size in MB.
+  (Get-Item "$($File)").Length/1GB  # Size in GB.
+  (Get-Item "$($File)").Length/1TB  # Size in TB.
 }
 
 function Get-Version() {
