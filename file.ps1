@@ -1,7 +1,7 @@
-function Get-CreationTimeSeconds() {
+function Find-CreationTimeSeconds() {
   <#
     .SYNOPSIS
-      Find files by creation date (seconds).
+      Search files by creation date (seconds).
     .DESCRIPTION
   #>
 
@@ -13,10 +13,10 @@ function Get-CreationTimeSeconds() {
     | Where-Object { (-not $_.PSIsContainer) -and ($_.CreationTime -gt (Get-Date).AddSeconds(-$($Seconds))) }
 }
 
-function Get-CreationTimeDays() {
+function Find-CreationTimeDays() {
   <#
     .SYNOPSIS
-      Find files by creation date (days).
+      Search files by creation date (days).
     .DESCRIPTION
   #>
 
@@ -28,10 +28,10 @@ function Get-CreationTimeDays() {
     | Where-Object { (-not $_.PSIsContainer) -and ($_.CreationTime -gt (Get-Date).AddDays(-$($Days))) }
 }
 
-function Get-LastWriteTimeSeconds() {
+function Find-LastWriteTimeSeconds() {
   <#
     .SYNOPSIS
-      Find files by last modified date (seconds).
+      Search files by last modified date (seconds).
     .DESCRIPTION
   #>
 
@@ -43,10 +43,10 @@ function Get-LastWriteTimeSeconds() {
     | Where-Object { (-not $_.PSIsContainer) -and ($_.LastWriteTime -gt (Get-Date).AddSeconds(-$($Seconds))) }
 }
 
-function Get-LastWriteTimeDays() {
+function Find-LastWriteTimeDays() {
   <#
     .SYNOPSIS
-      Find files by last modified date (days).
+      Search files by last modified date (days).
     .DESCRIPTION
   #>
 
@@ -61,7 +61,7 @@ function Get-LastWriteTimeDays() {
 function Get-Size() {
   <#
     .SYNOPSIS
-      Get file size in KB, MB, GB and TB.
+      Getting file size in KB, MB, GB and TB.
     .DESCRIPTION
   #>
 
@@ -77,7 +77,7 @@ function Get-Size() {
 function Get-Version() {
   <#
     .SYNOPSIS
-      Get file version.
+      Getting file version.
     .DESCRIPTION
   #>
 
@@ -89,11 +89,36 @@ function Get-Version() {
 function Get-Attributes() {
   <#
     .SYNOPSIS
-      Get file attributes.
+      Getting file attributes.
     .DESCRIPTION
   #>
 
   $File = 'C:\File.txt'
 
   Get-Item "$($File)" | Format-List -Property * -Force
+}
+
+function Copy-File() {
+  <#
+    .SYNOPSIS
+      Copying file and other directory contents.
+    .DESCRIPTION
+  #>
+
+  # Copy file to specified directory.
+  Copy-Item -Path "C:\Dir_OLD\File.txt" -Destination "C:\Dir_NEW\File.txt"
+
+  # Copy directory contents to existing directory.
+  Copy-Item -Path "C:\Dir_OLD\*" -Destination "C:\Dir_NEW" -Recurse
+
+}
+
+function Copy-Directory() {
+  <#
+    .SYNOPSIS
+      Copying directory and contents to a new directory.
+    .DESCRIPTION
+  #>
+
+  Copy-Item -Path "C:\Dir_OLD" -Destination "C:\Dir_NEW\Logs" -Recurse
 }
